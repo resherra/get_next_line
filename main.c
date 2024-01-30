@@ -2,5 +2,6 @@
 
 int main()
 {
-    printf("hello");
+    int   fd = open("test", O_RDONLY);
+    printf("%s\n", get_next_line(fd));
 }

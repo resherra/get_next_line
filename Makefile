@@ -1,4 +1,4 @@
-CC = cc
+CC = gcc
 CFLAGS = -Wall -Wextra -Werror
 SRC = ${wildcard *.c}
 OBJ = ${SRC:.c=.o}
@@ -18,6 +18,4 @@ fclean: clean
 re: fclean all
 
 main:
-	${CC} ${CFLAGS} main.c
-
-
+	${CC} ${CFLAGS} main.c get_next_line.c
