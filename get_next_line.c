@@ -6,55 +6,78 @@
 /*   By: recherra <recherra@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/27 12:22:17 by recherra          #+#    #+#             */
-/*   Updated: 2024/01/30 20:13:32 by recherra         ###   ########.fr       */
+/*   Updated: 2024/01/31 20:26:15 by recherra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
 
-int checker(char *str)
+
+
+char	*ft_strjoin(char const *s1, char const *s2)
 {
-    int i;
+	char	*res;
+	int		i;
+	int		j;
+	int		len;
 
-    i = 0;
+	i = 0;
+	j = 0;
+	if (!s1 || !s2)
+		return (NULL);
+	len = strlen(s1) + strlen(s2);
+	res = calloc(len + 1, sizeof(char));
+	if (!res)
+		return (NULL);
+	while (s1[j])
+	{
+		res[j] = s1[j];
+		j++;
+	}
+	while (s2[i])
+	{
+		res[j + i] = s2[i];
+		i++;
+	}
+	return (res);
+}
 
-    while (str[i])
+
+char *ft_strchr(const char *str, int c)
+{
+    char *s;
+
+    s = (char *)str;
+    while (*s)
     {
-        if (str[i] == '\n')
-            return i;
-        i++;
+        if (*s == c)
+            return s;
+        s++;
     }
-
-    return -1;
+    if (c == '\0')
+        return s;
+    return NULL;
 }
-
-char *reader()
-{
-
-
-
-}
-
 
 char *get_next_line(int fd)
 {
     char *str;
-    int reader;
-    int line_check;
+    size_t reader;
+    reader = 0;
+    char *new;
+    int i = 0;
 
     str = calloc(BUFFER_SIZE + 1, sizeof (char));
-    reader = read(fd, str, BUFFER_SIZE);
-    
-
-    
-    while 
-    line_check = checker(str);
-     (!line_check)
+    while (((reader = read(fd, str, BUFFER_SIZE)) > 0) && !ft_strchr(str, '\n'))
     {
-
+        i++;
+        // printf("i: %d\n", i);
+        printf("str '%s'\n", str);
     }
-    
-    
-    printf("inside '%s'\n", str);
+    new = calloc(BUFFER_SIZE, sizeof(char));
+    if (!new)
+        return NULL;
+    read(fd, new, BUFFER_SIZE * i);
+    printf("new: %s\n", new);
     return str;
 }

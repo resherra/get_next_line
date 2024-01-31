@@ -3,5 +3,6 @@
 int main()
 {
     int   fd = open("test", O_RDONLY);
-    printf("%s\n", get_next_line(fd));
+    // printf("%s\n", get_next_line(fd));
+    get_next_line(fd);
 }

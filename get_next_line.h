@@ -6,7 +6,7 @@
 /*   By: recherra <recherra@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/27 12:20:30 by recherra          #+#    #+#             */
-/*   Updated: 2024/01/30 13:39:30 by recherra         ###   ########.fr       */
+/*   Updated: 2024/01/31 20:02:01 by recherra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@
 #include <fcntl.h>
 #include <unistd.h>
 #include <stdlib.h>
+#include <string.h>
 
 
 char *get_next_line(int fd);
