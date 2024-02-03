@@ -81,7 +81,6 @@ char	*get_next_line(int fd)
 	int			to_copy;
 
 	line = ft_strdup(buf);
-	printf("buf: |%s|\n", buf);
 	while (!(ft_strchr(line, '\n')) && (countread = read(fd, buf, BUFFER_SIZE)) > 0)
 	{
 		buf[countread] = '\0';
@@ -109,7 +108,6 @@ int main()
 {
 	int fd = open("text", O_RDWR);
 
-	printf("%s", get_next_line(fd));
 	printf("%s", get_next_line(fd));
 	printf("%s", get_next_line(fd));
 }

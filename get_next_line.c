@@ -6,7 +6,7 @@
 /*   By: recherra <recherra@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/27 12:22:17 by recherra          #+#    #+#             */
-/*   Updated: 2024/01/31 20:26:15 by recherra         ###   ########.fr       */
+/*   Updated: 2024/02/03 21:33:14 by recherra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,8 +23,8 @@ char	*ft_strjoin(char const *s1, char const *s2)
 
 	i = 0;
 	j = 0;
-	if (!s1 || !s2)
-		return (NULL);
+	if (!s1)
+		return (strdup(s2));
 	len = strlen(s1) + strlen(s2);
 	res = calloc(len + 1, sizeof(char));
 	if (!res)
@@ -43,41 +43,77 @@ char	*ft_strjoin(char const *s1, char const *s2)
 }
 
 
+
 char *ft_strchr(const char *str, int c)
 {
     char *s;
 
+    if (!str)
+        return NULL;
     s = (char *)str;
+    
     while (*s)
     {
         if (*s == c)
             return s;
         s++;
     }
+    
     if (c == '\0')
         return s;
     return NULL;
 }
 
-char *get_next_line(int fd)
+int  ft_trunc(char *str)
 {
-    char *str;
-    size_t reader;
-    reader = 0;
-    char *new;
     int i = 0;
 
-    str = calloc(BUFFER_SIZE + 1, sizeof (char));
-    while (((reader = read(fd, str, BUFFER_SIZE)) > 0) && !ft_strchr(str, '\n'))
+    if (!str)
+        return -1;
+    while (str[i])
     {
+        if (str[i] == '\n')
+            return i;
         i++;
-        // printf("i: %d\n", i);
-        printf("str '%s'\n", str);
     }
-    new = calloc(BUFFER_SIZE, sizeof(char));
-    if (!new)
+
+    return -1;
+}
+
+
+
+char *get_next_line(int fd)
+{
+    char buffer[BUFFER_SIZE + 1];
+    static char *line;
+    char *next_line = NULL;
+    int readed = BUFFER_SIZE;
+    int truncated = -1;
+    char *tmp = NULL ;
+
+    if (fd < 0 || BUFFER_SIZE <= 0 || (read(fd, 0, 0)) < 0)
         return NULL;
-    read(fd, new, BUFFER_SIZE * i);
-    printf("new: %s\n", new);
-    return str;
+
+    while(readed == BUFFER_SIZE && truncated == -1)
+    {
+        readed = read(fd, buffer, BUFFER_SIZE);
+        buffer[readed] = 0 ;
+        line = ft_strjoin(line, buffer);
+        truncated = ft_trunc(line);
+    }
+    if (truncated < 0)
+    {
+        if(line != NULL)
+            tmp =strdup(line);
+        line = NULL;
+        return tmp;
+    }
+    else
+    {
+        next_line = calloc(truncated + 2, sizeof (char));
+        strlcpy(next_line, line, truncated + 2);
+        line = strdup(line + truncated + 1);
+    }
+    
+    return next_line;
 }
