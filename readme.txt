@@ -1,62 +1,125 @@
 hell
-o ja
-ck red
-this is the first line 
+oja
+cred
+this is the linee
 
 
-BUFFER_SIZE 6;
+BUFFER_SIZE: 10;
 
-read 6 | 'hello ' | check for \n --> not found.
-read 6 | 'jack r' | check for \n --> not found. ==> join();
-read 6 | 'ed\nthi'| check for \n --> found ==> store the part after \n in a static variable (char *rest)
-                                           ==> join() the part before \n add \0 and return the line;
-read 6 | 's is t' | check for \n --> not found. ==> join() with char *rest;
-read 6 | 'he fir' | check for \n --> not found ==> join();
-read 6 | 'st lin' | check for \n --> not found ==> join();
-read 6 | 'e' (BUFFER_SIZE > read() return ;) => check for \n --> not found ==> join();
-
-
-
-
-// first iteration
-buffer[7];
-char *line;
+char buffer[BUFFER_SIZE + 1];
+static char *line;
+char *next_line;
+char *tmp;
 int readed;
-
-buffer:
-0 0 0 0 0 0 0
-
-line:
-0 0 0 0 0 0 0 
-
-buffer:
-'h e l l o '
-
-line  = 'hello ';
+int truncated;
 
 
+FIRST ITERATION
 
-//second iteration
-
-buffer:
-"hello "
-
-line:
-"hello "
-
-
-buffer: 'jack r'
-
-
-line:
-hello buffer
-
-thi
+buffer[11]
+line = null;
+next_line = NULL;
+readed = 10;
+tmp = NULL;
+truncated = -1;
 
 
 
-hello jack red
+readed = 10;
+buffer = "hell\noja\nc\0"
+line = strjoin(line, buffer); ==> "hell\noja\nc\0"
+truncated = ft_trunc(line); ==> 4;
+next_line[4 + 2];
+strlcpy(next_line, "hell\noja\nc\0", 4 + 2);
+next_line = hell\n;
+line = strdup(line + truncated + 1); ==> "hell\noja\nc\0" ==> oja\nc\0
 
-ed\nthi
 
-read - truncated
+return "hell\n"
+
+
+
+
+SECOND ITERATION
+
+buffer[11]
+line = oja\nc\0
+next_line = NULL;
+readed = 10;
+tmp = NULL;
+truncated = -1;
+
+
+
+readed = 10;
+buffer = "red\nthis i\0"
+line = strjoin(line, buffer); ==> "oja\ncred\nthis i\0"
+truncated = ft_trunc(line); ==> 3;
+next_line[3 + 2];
+strlcpy(next_line, "oja\ncred\nthis i\0", 3 + 2);
+next_line = oja\n;
+line = strdup(line + truncated + 1); ==> "oja\ncred\nthis i\0" ==> "cred\nthis i\0"
+
+return "oja\n"
+
+
+
+THIRD ITERATION
+
+buffer[11]
+line = cred\nthis i\0
+next_line = NULL;
+readed = 10;
+tmp = NULL;
+truncated = -1;
+
+
+readed = 10;
+buffer = "s the line\0"
+line = strjoin(line, buffer); ==> "cred\nthis is the line\0"
+truncated = ft_trunc(line); ==> 4;
+next_line[4 + 2];
+strlcpy(next_line, "cred\nthis is the line\0", 4 + 2);
+next_line = "cred\n"
+line = strdup(line + truncated + 1); ==> "cred\nthis is the line\0" ==> "this is the line\0"
+
+return "cred\n"
+
+
+LAST ITERATION
+
+buffer[11]
+line = this is the line\0
+next_line = NULL;
+readed = 10;
+tmp = NULL;
+truncated = -1;
+
+
+readed = 1
+buffer = "e\0";
+line = strjoin(line, buffer); ==> "this is the linee\0";
+truncated = ft_trunc(line); ==> -1;
+
+IF (truncated < 0)
+
+tmp = strdup(line) ==> "this is the linee\0"
+line = NULL;
+
+
+return tmp ==> "this is the linee\0"
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
