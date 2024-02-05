@@ -6,11 +6,12 @@
 /*   By: recherra <recherra@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/27 12:22:17 by recherra          #+#    #+#             */
-/*   Updated: 2024/02/04 16:43:02 by recherra         ###   ########.fr       */
+/*   Updated: 2024/02/05 11:44:20 by recherra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
+
 size_t	ft_strlen(const char *s1)
 {
 	int	i;
@@ -39,6 +40,7 @@ size_t	ft_strlcpy(char *dst, const char *src, size_t dstsize)
 	dst[i] = '\0';
 	return (len);
 }
+
 char	*ft_strdup(const char *s1)
 {
 	char	*str;
@@ -49,7 +51,7 @@ char	*ft_strdup(const char *s1)
         return NULL;
 	i = 0;
 	len = ft_strlen(s1);
-	str = malloc((len + 1));
+	str = malloc(len + 1);
 	if (!str)
 		return (NULL);
 	while (s1[i])
@@ -86,30 +88,11 @@ char	*ft_strjoin(char const *s1, char const *s2)
 		res[j + i] = s2[i];
 		i++;
 	}
-    res[len]='\0';
+    res[len]= '\0';
 	return (res);
 }
 
-char *ft_strchr(const char *str, int c)
-{
-    char *s;
-
-    if (!str)
-        return NULL;
-    s = (char *)str;
-    
-    while (*s)
-    {
-        if (*s == c)
-            return s;
-        s++;
-    }
-    
-    if (c == '\0')
-        return s;
-    return NULL;
-}
-
+//get the \n index
 int  ft_trunc(char *str)
 {
     int i = 0;
@@ -139,13 +122,13 @@ char *get_next_line(int fd)
     readed = BUFFER_SIZE;
     truncated = -1;
     tmp = NULL;
-    if (fd < 0 || BUFFER_SIZE <= 0 || (read(fd, 0, 0)) < 0)
+    if (fd < 0 || BUFFER_SIZE <= 0 || (read(fd, buffer, 0)) < 0)
     {
         free(line);
-        line= NULL;
+        line = NULL;
         return NULL;
     }
-    while(readed == BUFFER_SIZE && truncated == -1)
+    while (readed == BUFFER_SIZE && truncated == -1)
     {
         readed = read(fd, buffer, BUFFER_SIZE);
         buffer[readed] = '\0';
