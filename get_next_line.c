@@ -6,7 +6,7 @@
 /*   By: recherra <recherra@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/27 12:22:17 by recherra          #+#    #+#             */
-/*   Updated: 2024/02/05 17:24:00 by recherra         ###   ########.fr       */
+/*   Updated: 2024/02/10 20:37:10 by recherra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 char *get_next_line(int fd)
 {
-    char buffer[BUFFER_SIZE + 1];
+    char *buffer;
     static char *line;
     char *next_line;
     char *tmp;
@@ -25,7 +25,15 @@ char *get_next_line(int fd)
     readed = BUFFER_SIZE;
     truncated = -1;
     tmp = NULL;
+    buffer = NULL;
     if (fd < 0 || BUFFER_SIZE <= 0 || (read(fd, buffer, 0)) < 0)
+    {
+        free(line);
+        line = NULL;
+        return NULL;
+    }
+    buffer = malloc(BUFFER_SIZE + 1);
+    if (!buffer)
     {
         free(line);
         line = NULL;
@@ -41,6 +49,8 @@ char *get_next_line(int fd)
         tmp = NULL;
         truncated = ft_trunc(line);
     }
+    free(buffer);
+    buffer = NULL;
     if (truncated < 0)
     {
         if (line)
