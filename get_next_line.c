@@ -6,75 +6,76 @@
 /*   By: recherra <recherra@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/27 12:22:17 by recherra          #+#    #+#             */
-/*   Updated: 2024/02/11 13:21:30 by recherra         ###   ########.fr       */
+/*   Updated: 2024/02/11 16:24:05 by recherra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
 
-char *get_next_line(int fd)
+char *freed(char **str)
 {
-    char *buffer;
-    static char *line;
+    free(*str);
+    *str = NULL;
+    return NULL;
+}
+char *ne_line(char **line, int truncated)
+{   
     char *next_line;
     char *tmp;
-    int readed;
-    int truncated;
 
-    buffer = NULL;
-    next_line = NULL;
-    tmp = NULL;
-    readed = BUFFER_SIZE;
-    truncated = -1;
-    if (fd < 0 || BUFFER_SIZE <= 0 || (read(fd, buffer, 0)) < 0)
-    {
-        free(line);
-        line = NULL;
-        return NULL;
-    }
-    buffer = malloc(BUFFER_SIZE + 1);
-    if (!buffer)
-    {
-        free(line);
-        line = NULL;
-        return NULL;
-    }
-    while (readed == BUFFER_SIZE && truncated == -1)
-    {
-        readed = read(fd, buffer, BUFFER_SIZE);
-        buffer[readed] = '\0';
-        tmp = line;
-        line = ft_strjoin(line, buffer);
-        free(tmp);
-        tmp = NULL;
-        truncated = ft_trunc(line);
-    }
-    free(buffer);
-    buffer = NULL;
-    if (truncated < 0)
-    {
-        if (line)
-        {
-            tmp = ft_strdup(line);
-        }
-        free(line);
-        line = NULL;
-        return tmp;
-    }
-    else
-    {
-        next_line = malloc(truncated + 2);
-        if (!next_line)
-        {
-            free(line);
-            line = NULL;
-            return NULL;
-        }
-        ft_strlcpy(next_line, line, truncated + 2);
-        tmp = line;
-        line = ft_strdup(line + truncated + 1);
-        free(tmp);
-    }
-    
+    next_line = malloc(truncated + 2);
+    if (!next_line)
+        return freed(line);
+    ft_strlcpy(next_line, *line, truncated + 2);
+    tmp = *line;
+    *line = ft_strdup((*line) + truncated + 1);
+    freed(&tmp);
     return next_line;
+}
+static char *last_line(char **line)
+{
+    char *tmp;
+
+    tmp = NULL;
+    if (*line)
+    {
+        tmp = ft_strdup(*line);
+        freed(line);
+    }
+    return tmp;
+}
+void initial(t_list *utils)
+{
+    utils->buffer = NULL;   
+    utils->next_line = NULL;
+    utils->tmp = NULL;
+    utils->readed = BUFFER_SIZE;
+    utils->truncated = -1;
+}
+char *get_next_line(int fd)
+{
+    t_list utils;
+    static char *line;
+
+    initial(&utils);
+    if (fd < 0 || BUFFER_SIZE <= 0 || (read(fd, utils.buffer, 0)) < 0)
+        return freed(&line);
+    utils.buffer = malloc(BUFFER_SIZE + 1);
+    if (!utils.buffer)
+        return freed(&line);
+    while (utils.readed == BUFFER_SIZE && utils.truncated == -1)
+    {
+        utils.readed = read(fd, utils.buffer, BUFFER_SIZE);
+        utils.buffer[utils.readed] = '\0';
+        utils.tmp = line;
+        line = ft_strjoin(line, utils.buffer);
+        freed(&utils.tmp);
+        utils.truncated = ft_trunc(line);
+    }
+    freed(&utils.buffer);
+    if (utils.truncated < 0)
+        return utils.tmp = last_line(&line);
+    else
+        utils.next_line = ne_line(&line, utils.truncated);    
+    return utils.next_line;
 }
