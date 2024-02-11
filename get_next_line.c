@@ -6,7 +6,7 @@
 /*   By: recherra <recherra@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/27 12:22:17 by recherra          #+#    #+#             */
-/*   Updated: 2024/02/10 20:37:10 by recherra         ###   ########.fr       */
+/*   Updated: 2024/02/11 13:21:30 by recherra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,11 +21,11 @@ char *get_next_line(int fd)
     int readed;
     int truncated;
 
+    buffer = NULL;
     next_line = NULL;
+    tmp = NULL;
     readed = BUFFER_SIZE;
     truncated = -1;
-    tmp = NULL;
-    buffer = NULL;
     if (fd < 0 || BUFFER_SIZE <= 0 || (read(fd, buffer, 0)) < 0)
     {
         free(line);
