@@ -25,20 +25,19 @@
 
 typedef struct s_list
 {
-    char *buffer;
-    char *next_line;
-    char *tmp;
-    int readed;
-    int truncated;
+	char	*buffer;
+	char	*next_line;
+	char	*tmp;
+	int		readed;
+	int		truncated;
 
-} t_list;
+}			t_list;
 
-
-char	*get_next_line(int fd);
-char	*ft_strjoin(char *line, char *buffer);
-char	*ft_strdup(char *str);
-size_t	ft_strlcpy(char *dst, char *src, size_t dstsize);
-size_t	ft_strlen(char *str);
-int		ft_trunc(char *str);
+char		*get_next_line(int fd);
+char		*ft_strjoin(char *line, char *buffer);
+char		*ft_strdup(char *str);
+size_t		ft_strlcpy(char *dst, char *src, size_t dstsize);
+size_t		ft_strlen(char *str);
+int			ft_trunc(char *str);
 
 #endif
