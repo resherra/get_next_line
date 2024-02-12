@@ -1,18 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line_utils.c                              :+:      :+:    :+:   */
+/*   get_next_line_utils_bonus.c                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: recherra <recherra@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/01/30 10:31:18 by recherra          #+#    #+#             */
-/*   Updated: 2024/02/12 15:12:13 by recherra         ###   ########.fr       */
+/*   Created: 2024/02/12 12:14:14 by recherra          #+#    #+#             */
+/*   Updated: 2024/02/12 15:12:14 by recherra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "get_next_line.h"
+#include "get_next_line_bonus.h"
 
-static size_t	ft_strlen(char *s1)
+size_t	ft_strlen(char *s1)
 {
 	size_t	i;
 

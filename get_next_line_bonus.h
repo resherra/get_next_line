@@ -1,24 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line.h                                    :+:      :+:    :+:   */
+/*   get_next_line_bonus.h                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: recherra <recherra@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/01/27 12:20:30 by recherra          #+#    #+#             */
-/*   Updated: 2024/02/12 15:17:30 by recherra         ###   ########.fr       */
+/*   Created: 2024/02/12 12:14:45 by recherra          #+#    #+#             */
+/*   Updated: 2024/02/12 15:17:09 by recherra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef GET_NEXT_LINE_H
-# define GET_NEXT_LINE_H
+#ifndef GET_NEXT_LINE_BONUS_H
+# define GET_NEXT_LINE_BONUS_H
 
 # ifndef BUFFER_SIZE
 #  define BUFFER_SIZE 10
 # endif
 
-# include <unistd.h>
+# include <limits.h>
 # include <stdlib.h>
+# include <unistd.h>
 
 typedef struct s_list
 {
