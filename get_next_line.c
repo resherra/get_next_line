@@ -6,7 +6,7 @@
 /*   By: recherra <recherra@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/27 12:22:17 by recherra          #+#    #+#             */
-/*   Updated: 2024/02/14 12:07:20 by recherra         ###   ########.fr       */
+/*   Updated: 2024/02/14 14:05:46 by recherra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,7 +74,7 @@ char	*get_next_line(int fd)
 		utils.truncated = ft_trunc(line);
 	}
 	freed(&utils.buffer);
-	if (utils.truncated < 0)
+	if (utils.truncated == -1)
 		return (utils.tmp = last_line(&line));
 	else
 		utils.next_line = ne_line(&line, utils.truncated);

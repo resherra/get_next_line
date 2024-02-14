@@ -6,7 +6,7 @@
 /*   By: recherra <recherra@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/27 12:20:30 by recherra          #+#    #+#             */
-/*   Updated: 2024/02/12 15:17:30 by recherra         ###   ########.fr       */
+/*   Updated: 2024/02/14 15:04:59 by recherra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,8 @@
 #  define BUFFER_SIZE 10
 # endif
 
-# include <unistd.h>
 # include <stdlib.h>
+# include <unistd.h>
 
 typedef struct s_list
 {
@@ -33,7 +33,7 @@ typedef struct s_list
 char		*get_next_line(int fd);
 char		*ft_strjoin(char *line, char *buffer);
 char		*ft_strdup(char *str);
-size_t		ft_strlcpy(char *dst, char *src, size_t dstsize);
+void		ft_strlcpy(char *dst, char *src, int dstsize);
 int			ft_trunc(char *str);
 
 #endif

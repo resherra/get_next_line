@@ -6,15 +6,15 @@
 /*   By: recherra <recherra@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/12 12:14:14 by recherra          #+#    #+#             */
-/*   Updated: 2024/02/14 12:19:43 by recherra         ###   ########.fr       */
+/*   Updated: 2024/02/14 15:03:37 by recherra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line_bonus.h"
 
-size_t	ft_strlen(char *s1)
+int	ft_strlen(char *s1)
 {
-	size_t	i;
+	int	i;
 
 	if (!s1 || !(*s1))
 		return (0);
@@ -24,28 +24,25 @@ size_t	ft_strlen(char *s1)
 	return (i);
 }
 
-size_t	ft_strlcpy(char *dst, char *src, size_t dstsize)
+void	ft_strlcpy(char *dst, char *src, int dstsize)
 {
-	size_t	i;
-	size_t	len;
+	int	i;
+	int	len;
 
 	len = ft_strlen(src);
 	i = 0;
-	if (!dstsize)
-		return (len);
 	while (src[i] && i < dstsize - 1)
 	{
 		dst[i] = src[i];
 		i++;
 	}
 	dst[i] = '\0';
-	return (len);
 }
 
 char	*ft_strdup(char *s1)
 {
 	char	*str;
-	size_t	len;
+	int		len;
 	int		i;
 
 	if (!s1 || !(*s1))
@@ -69,7 +66,7 @@ char	*ft_strjoin(char *s1, char *s2)
 	char	*res;
 	int		i;
 	int		j;
-	size_t	len;
+	int		len;
 
 	i = 0;
 	j = 0;

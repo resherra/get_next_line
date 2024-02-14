@@ -6,7 +6,7 @@
 /*   By: recherra <recherra@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/12 12:14:45 by recherra          #+#    #+#             */
-/*   Updated: 2024/02/12 15:17:09 by recherra         ###   ########.fr       */
+/*   Updated: 2024/02/14 15:04:27 by recherra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ typedef struct s_list
 char		*get_next_line(int fd);
 char		*ft_strjoin(char *line, char *buffer);
 char		*ft_strdup(char *str);
-size_t		ft_strlcpy(char *dst, char *src, size_t dstsize);
+void		ft_strlcpy(char *dst, char *src, int dstsize);
 int			ft_trunc(char *str);
 
 #endif
