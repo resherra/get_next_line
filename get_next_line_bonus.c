@@ -6,7 +6,7 @@
 /*   By: recherra <recherra@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/12 12:14:10 by recherra          #+#    #+#             */
-/*   Updated: 2024/02/12 15:13:29 by recherra         ###   ########.fr       */
+/*   Updated: 2024/02/14 12:17:27 by recherra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,11 +39,8 @@ static char	*last_line(char **line)
 	char	*tmp;
 
 	tmp = NULL;
-	if (*line)
-	{
-		tmp = ft_strdup(*line);
-		freed(line);
-	}
+	tmp = ft_strdup(*line);
+	freed(line);
 	return (tmp);
 }
 

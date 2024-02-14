@@ -6,7 +6,7 @@
 /*   By: recherra <recherra@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/12 12:14:14 by recherra          #+#    #+#             */
-/*   Updated: 2024/02/12 15:12:14 by recherra         ###   ########.fr       */
+/*   Updated: 2024/02/14 12:19:43 by recherra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ char	*ft_strdup(char *s1)
 	size_t	len;
 	int		i;
 
-	if (!(*s1))
+	if (!s1 || !(*s1))
 		return (NULL);
 	i = 0;
 	len = ft_strlen(s1);
