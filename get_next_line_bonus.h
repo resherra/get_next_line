@@ -6,7 +6,7 @@
 /*   By: recherra <recherra@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/12 12:14:45 by recherra          #+#    #+#             */
-/*   Updated: 2024/02/14 15:04:27 by recherra         ###   ########.fr       */
+/*   Updated: 2024/02/15 15:56:15 by recherra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@
 # include <stdlib.h>
 # include <unistd.h>
 
-typedef struct s_list
+typedef struct s_utils
 {
 	char	*buffer;
 	char	*next_line;
@@ -29,7 +29,7 @@ typedef struct s_list
 	int		readed;
 	int		truncated;
 
-}			t_list;
+}			t_utils;
 
 char		*get_next_line(int fd);
 char		*ft_strjoin(char *line, char *buffer);

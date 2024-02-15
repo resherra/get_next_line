@@ -6,7 +6,7 @@
 /*   By: recherra <recherra@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/12 12:14:10 by recherra          #+#    #+#             */
-/*   Updated: 2024/02/14 13:59:55 by recherra         ###   ########.fr       */
+/*   Updated: 2024/02/15 15:57:00 by recherra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ static char	*last_line(char **line)
 	return (tmp);
 }
 
-static void	initial(t_list *utils)
+static void	initial(t_utils *utils)
 {
 	utils->buffer = NULL;
 	utils->next_line = NULL;
@@ -55,7 +55,7 @@ static void	initial(t_list *utils)
 
 char	*get_next_line(int fd)
 {
-	t_list		utils;
+	t_utils		utils;
 	static char	*line[OPEN_MAX];
 
 	initial(&utils);
