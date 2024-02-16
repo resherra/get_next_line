@@ -6,7 +6,7 @@
 /*   By: recherra <recherra@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/12 12:14:10 by recherra          #+#    #+#             */
-/*   Updated: 2024/02/15 15:57:00 by recherra         ###   ########.fr       */
+/*   Updated: 2024/02/16 17:22:38 by recherra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,7 @@ char	*get_next_line(int fd)
 	static char	*line[OPEN_MAX];
 
 	initial(&utils);
-	if (fd < 0 || BUFFER_SIZE <= 0 || (read(fd, utils.buffer, 0)) < 0)
+	if (BUFFER_SIZE <= 0 || (read(fd, utils.buffer, 0)) < 0)
 		return (freed(&line[fd]));
 	utils.buffer = malloc(BUFFER_SIZE + 1);
 	if (!utils.buffer)

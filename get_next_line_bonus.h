@@ -6,7 +6,7 @@
 /*   By: recherra <recherra@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/12 12:14:45 by recherra          #+#    #+#             */
-/*   Updated: 2024/02/15 15:56:15 by recherra         ###   ########.fr       */
+/*   Updated: 2024/02/16 17:22:02 by recherra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ typedef struct s_utils
 	char	*buffer;
 	char	*next_line;
 	char	*tmp;
-	int		readed;
+	ssize_t	readed;
 	int		truncated;
 
 }			t_utils;
