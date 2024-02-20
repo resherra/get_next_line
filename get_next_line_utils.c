@@ -6,7 +6,7 @@
 /*   By: recherra <recherra@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/30 10:31:18 by recherra          #+#    #+#             */
-/*   Updated: 2024/02/14 15:02:43 by recherra         ###   ########.fr       */
+/*   Updated: 2024/02/20 10:44:53 by recherra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,9 +27,7 @@ static int	ft_strlen(char *s1)
 void	ft_strlcpy(char *dst, char *src, int dstsize)
 {
 	int	i;
-	int	len;
 
-	len = ft_strlen(src);
 	i = 0;
 	while (src[i] && i < dstsize - 1)
 	{
